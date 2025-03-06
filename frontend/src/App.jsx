@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PersistentDrawerRight from "../components/navbar";
-import Map from "../components/Map";
+import Map from "../components/Maps";
 import Home from "../components/Home";
 import Marketplace from "../components/Marketplace";
 import GovtSchemes from "../components/GovtSchemes";
