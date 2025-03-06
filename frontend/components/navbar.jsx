@@ -18,6 +18,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -30,12 +34,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginRight: -drawerWidth,
-    /**
-     * This is necessary to enable the selection of content. In the DOM, the stacking order is determined
-     * by the order of appearance. Following this rule, elements appearing later in the markup will overlay
-     * those that appear earlier. Since the Drawer comes after the Main content, this adjustment ensures
-     * proper interaction with the underlying content.
-     */
+
     position: "relative",
     variants: [
       {
@@ -83,7 +82,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-start",
 }));
 
-export default function PersistentDrawerRight() {
+export default function PersistentDrawerRight({ changePage }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -100,8 +99,13 @@ export default function PersistentDrawerRight() {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            Persistent drawer
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{ flexGrow: 1, color: "white", fontWeight: "bold" }}
+            component="div"
+          >
+            Farmer's Help
           </Typography>
           <IconButton
             color="inherit"
@@ -115,36 +119,7 @@ export default function PersistentDrawerRight() {
         </Toolbar>
       </AppBar>
       <Main open={open}>
-        <DrawerHeader />
-        <Typography sx={{ marginBottom: 2 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography sx={{ marginBottom: 2 }}>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <DrawerHeader sx={{ backgroundColor: "black" }} />
       </Main>
       <Drawer
         sx={{
@@ -169,15 +144,40 @@ export default function PersistentDrawerRight() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+          {[
+            { text: "Home", icon: <HomeIcon />, path: "/home" },
+            {
+              text: "Map",
+              icon: <AddLocationAltIcon />,
+              path: "/map",
+            },
+            {
+              text: "Market Place",
+              icon: <AddLocationAltIcon />,
+              path: "/marketplace",
+            },
+            // Updated the Profile route to "/profilepage"
+            {
+              text: "Government Schemes",
+              icon: <InboxIcon />,
+              path: "/govtschemes",
+            },
+            { text: "Map", icon: <InboxIcon />, path: "/map" },
+            { text: "Contact", icon: <InboxIcon />, path: "/contact" },
+          ].map(({ text, icon, path }) => (
+            <Link
+              to={path}
+              key={text}
+              style={{ textDecoration: "none", color: "inherit" }}
+              onClick={() => changePage(text)}
+            >
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
