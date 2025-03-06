@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PersistentDrawerRight from "../components/navbar";
-import Map from "../components/Maps";
+import Maps from "../components/Maps";
 import Home from "../components/Home";
 import Marketplace from "../components/Marketplace";
 import GovtSchemes from "../components/GovtSchemes";
@@ -17,7 +17,7 @@ function App() {
       <div className="pages">
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route path="/map" element={<Map />} />
+          <Route path="/maps" element={<Maps />} />
           <Route path="/marketplace" element={<Marketplace />} />
           {/* Profile Page Route */}
           <Route path="/govtschemes" element={<GovtSchemes />} />

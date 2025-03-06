@@ -114,9 +114,17 @@ const Maps = () => {
     <div className="map-container">
       <div className="user-input">
         <label htmlFor="lat">Latitude:</label>
-        <input type="number" id="lat" placeholder="Enter latitude (-90 to 90)" />
+        <input
+          type="number"
+          id="lat"
+          placeholder="Enter latitude (-90 to 90)"
+        />
         <label htmlFor="lng">Longitude:</label>
-        <input type="number" id="lng" placeholder="Enter longitude (-180 to 180)" />
+        <input
+          type="number"
+          id="lng"
+          placeholder="Enter longitude (-180 to 180)"
+        />
         <label htmlFor="image">Image URL:</label>
         <input type="text" id="image" placeholder="Enter image URL" />
         <label htmlFor="imageUpload">Or upload image:</label>
@@ -131,7 +139,11 @@ const Maps = () => {
         <button onClick={handleUseCurrentLocation}>Use My Location</button>
         {error && <p className="error">{error}</p>}
       </div>
-      <MapContainer center={[12.9716, 77.5946]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+      <MapContainer
+        center={[12.9716, 77.5946]}
+        zoom={13}
+        style={{ height: "100vh", width: "100%" }}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -144,7 +156,11 @@ const Maps = () => {
                   <img
                     src={marker.imageUrl}
                     alt="User provided"
-                    style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
                   />
                 </Popup>
               </Marker>
