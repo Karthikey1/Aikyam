@@ -173,7 +173,7 @@ export default function PersistentDrawerRight({ changePage }) {
               icon: <PestControlIcon />,
               path: "/pestpurchase",
             },
-            { text: "Contact", icon: <ContactPhoneIcon />, path: "/contact" },
+            { text: "Contact", icon: <ContactPhoneIcon />, path: "/contacts" },
           ].map(({ text, icon, path }) => (
             <Link
               to={path}
