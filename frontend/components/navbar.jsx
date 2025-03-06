@@ -20,6 +20,11 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import HomeIcon from "@mui/icons-material/Home";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import GrassIcon from "@mui/icons-material/Grass";
+import PestControlIcon from "@mui/icons-material/PestControl";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
 
 import { Link } from "react-router-dom";
 
@@ -77,7 +82,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-start",
 }));
@@ -108,7 +112,6 @@ export default function PersistentDrawerRight({ changePage }) {
             Farmer's Help
           </Typography>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
@@ -118,9 +121,7 @@ export default function PersistentDrawerRight({ changePage }) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Main open={open}>
-        <DrawerHeader sx={{ backgroundColor: "black" }} />
-      </Main>
+      <Main open={open}></Main>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -153,17 +154,26 @@ export default function PersistentDrawerRight({ changePage }) {
             },
             {
               text: "Market Place",
-              icon: <AddLocationAltIcon />,
+              icon: <StorefrontIcon />,
               path: "/marketplace",
             },
             // Updated the Profile route to "/profilepage"
             {
               text: "Government Schemes",
-              icon: <InboxIcon />,
+              icon: <AssuredWorkloadIcon />,
               path: "/govtschemes",
             },
-            { text: "Map", icon: <InboxIcon />, path: "/map" },
-            { text: "Contact", icon: <InboxIcon />, path: "/contact" },
+            {
+              text: "Analyse Plant",
+              icon: <GrassIcon />,
+              path: "/analyseplant",
+            },
+            {
+              text: "Pest Purchase",
+              icon: <PestControlIcon />,
+              path: "/pestpurchase",
+            },
+            { text: "Contact", icon: <ContactPhoneIcon />, path: "/contact" },
           ].map(({ text, icon, path }) => (
             <Link
               to={path}
