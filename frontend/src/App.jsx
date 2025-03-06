@@ -5,6 +5,8 @@ import Map from "../components/Map";
 import Home from "../components/Home";
 import Marketplace from "../components/Marketplace";
 import GovtSchemes from "../components/GovtSchemes";
+import AnalysePlant from "../components/AnalysePlant";
+import PestPurchase from "../components/PestPurchase";
 function App() {
   const updatePage = (text) => {
     setPage(text);
@@ -12,7 +14,7 @@ function App() {
   return (
     <>
       <PersistentDrawerRight changePage={updatePage} />
-      <div className="hero">
+      <div className="pages">
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/map" element={<Map />} />
@@ -20,8 +22,8 @@ function App() {
           {/* Profile Page Route */}
           <Route path="/govtschemes" element={<GovtSchemes />} />
           {/* Add any other routes you need */}
-          <Route path="/analyseplant" element={<Map />} />
-          <Route path="/pestpurchase" element={<Map />} />
+          <Route path="/analyseplant" element={<AnalysePlant />} />
+          <Route path="/pestpurchase" element={<PestPurchase />} />
           {/* Fallback Route */}
           <Route path="*" element={<Home />} />
         </Routes>
