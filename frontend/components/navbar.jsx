@@ -150,7 +150,7 @@ export default function PersistentDrawerRight({ changePage }) {
             {
               text: "Map",
               icon: <AddLocationAltIcon />,
-              path: "/map",
+              path: "/maps",
             },
             {
               text: "Market Place",
