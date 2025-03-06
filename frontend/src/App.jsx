@@ -7,6 +7,7 @@ import Marketplace from "../components/Marketplace";
 import GovtSchemes from "../components/GovtSchemes";
 import AnalysePlant from "../components/AnalysePlant";
 import PestPurchase from "../components/PestPurchase";
+import Contacts from "../components/Contacts";
 function App() {
   const updatePage = (text) => {
     setPage(text);
@@ -24,6 +25,8 @@ function App() {
           {/* Add any other routes you need */}
           <Route path="/analyseplant" element={<AnalysePlant />} />
           <Route path="/pestpurchase" element={<PestPurchase />} />
+          <Route path="/contacts" element={<Contacts />} />
+
           {/* Fallback Route */}
           <Route path="*" element={<Home />} />
         </Routes>
