@@ -1,11 +1,13 @@
-import './App.css'
+import "./App.css";
+import PersistentDrawerRight from "../components/navbar";
 
 function App() {
-  
-
   return (
-    <div>Hello World</div>
-  )
+    <>
+      <PersistentDrawerRight />
+      <div className="hero">hello world</div>
+    </>
+  );
 }
 
-export default App
+export default App;
