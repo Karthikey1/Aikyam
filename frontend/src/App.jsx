@@ -8,6 +8,7 @@ import GovtSchemes from "../components/GovtSchemes";
 import AnalysePlant from "../components/AnalysePlant";
 import PestPurchase from "../components/PestPurchase";
 import Contacts from "../components/Contacts";
+import Equipment from "../components/Equipment";
 function App() {
   const updatePage = (text) => {
     setPage(text);
@@ -26,6 +27,7 @@ function App() {
           <Route path="/analyseplant" element={<AnalysePlant />} />
           <Route path="/pestpurchase" element={<PestPurchase />} />
           <Route path="/contacts" element={<Contacts />} />
+          <Route path="/equipments" element={<Equipment />} />
 
           {/* Fallback Route */}
           <Route path="*" element={<Home />} />
