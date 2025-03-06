@@ -1,0 +1,310 @@
+.container {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
+}
+
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.marketStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #00c853;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  background-color: #00c853;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 200, 83, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+}
+
+.accountInfo {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.balance {
+  background-color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.profileButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Main Grid Layout */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  padding: 2rem;
+  height: calc(100vh - 80px);
+}
+
+.chartSection {
+  grid-row: 1 / 3;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.orderPanel {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderBook {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.orderHistory {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 1rem;
+  grid-column: 1 / -1;
+}
+
+/* Chart Styles */
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.instrumentInfo h2 {
+  margin: 0;
+  color: #00c853;
+}
+
+.priceDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.lastPrice {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.priceChange {
+  color: #00c853;
+}
+
+.chartControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chartControls button {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Order Form Styles */
+.orderTabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.orderTab {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.orderTab.active {
+  background-color: #00c853;
+  font-weight: bold;
+}
+
+.inputGroup {
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #888;
+}
+
+.inputGroup input {
+  width: 100%;
+  background-color: #333;
+  border: 1px solid #444;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+.orderButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.buyButton, .sellButton {
+  border: none;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.buyButton {
+  background-color: #00c853;
+  color: white;
+}
+
+.sellButton {
+  background-color: #ff4444;
+  color: white;
+}
+
+/* Order Book Styles */
+.orderBookGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+}
+
+.buyOrders, .sellOrders {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.orderRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem;
+}
+
+.buyPrice {
+  color: #00c853;
+}
+
+.sellPrice {
+  color: #ff4444;
+}
+
+.spread {
+  text-align: center;
+  color: #888;
+  padding: 1rem 0;
+}
+
+/* Order History Styles */
+.historyTable {
+  margin-top: 1rem;
+}
+
+.tableHeader, .tableRow {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.tableHeader {
+  border-bottom: 1px solid #333;
+  color: #888;
+}
+
+.tableRow {
+  font-size: 0.9rem;
+}
+
+.statusFilled {
+  color: #00c853;
+}
+
+/* Position Styles */
+.positionSummary {
+  margin-top: auto;
+}
+.positionItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.positive {
+  color: #00c853;
+}
+
+.negative {
+  color: #ff4444;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tableRow {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@media (max-width: 1200px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .chartSection {
+    grid-row: auto;
+    height: 400px;
+  }
+}
