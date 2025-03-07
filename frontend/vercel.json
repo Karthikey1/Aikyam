@@ -1,11 +1,15 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
-
-export default defineConfig({
-  build: {
-    sourcemap: false, // Disable source maps
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "build": {
+    "env": {
+      "GENERATE_SOURCEMAP": "false"
+    }
   },
-});
+  "ignoreCommand": "echo 'Skipping source maps and unnecessary files'",
+  "cleanUrls": true
+}
