@@ -1,70 +1,81 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import numpy as np
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-import io
 import os
+import requests
+from dotenv import load_dotenv
+import logging
+
+# Enable debugging logs
+logging.basicConfig(level=logging.DEBUG)
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS
+CORS(app)
 
-# Load your trained model
-model = load_model('plant_disease_prediction_model.h5')
+# Get API Key
+API_KEY = os.getenv('PLANT_API_KEY')
+BASE_URL = 'https://api.kindwise.com/v3'
 
-# Define class names (replace with your actual class labels)
-class_names = [
-    'Tomato_Early_Blight',
-    'Tomato_Late_Blight',
-    'Tomato_Healthy',
-    # ... add all your classes
-]
+if not API_KEY:
+    logging.error("❌ PLANT_API_KEY is missing! Set it in .env")
 
-def preprocess_image(img):
-    """Preprocess image for model prediction"""
-    img = img.resize((256, 256))  # Match your model's expected input
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    return img_array / 255.0  # Normalize if your model requires it
+# ... (previous imports and setup)
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file uploaded'}), 400
-    
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error': 'Empty filename'}), 400
-
+@app.route('/api/identify', methods=['POST'])
+def identify_plant():
     try:
-        # Convert to PIL Image
-        img = Image.open(io.BytesIO(file.read())).convert('RGB')
-        
-        # Preprocess and predict
-        processed_img = preprocess_image(img)
-        predictions = model.predict(processed_img)
-        confidence = np.max(predictions[0])
-        class_index = np.argmax(predictions[0])
-        predicted_class = class_names[class_index]
+        if 'image' not in request.files:
+            return jsonify(error='No image provided'), 400
 
-        return jsonify({
-            'disease': predicted_class,
-            'confidence': float(confidence),
-            'treatment': get_treatment(predicted_class)
-        })
+        file = request.files['image']
+        if file.filename == '':
+            return jsonify(error='Invalid file'), 400
 
+        file_bytes = file.read()
+        file.stream.seek(0)  # Reset if needed
+
+        response = requests.post(
+            f'{BASE_URL}/identification',
+            headers={'Api-Key': API_KEY},
+            files={'images': (file.filename, file_bytes, file.mimetype)},
+            data={
+                'health': 'all',
+                'similar_images': 'true',
+                'classification_level': 'species'
+            }
+        )
+
+        response.raise_for_status()
+        return jsonify(response.json())
+
+    except requests.exceptions.RequestException as e:
+        return jsonify(error='Plant API error'), 502
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify(error='Server error'), 500
 
-def get_treatment(disease):
-    """Add your custom treatment recommendations"""
-    treatments = {
-        'Tomato_Early_Blight': 'Apply copper-based fungicides every 7-10 days. Remove infected leaves.',
-        'Tomato_Late_Blight': 'Use fungicides containing chlorothalonil. Improve air circulation.',
-        'Tomato_Healthy': 'No treatment needed. Maintain good growing conditions.',
-        # ... add treatments for all classes
-    }
-    return treatments.get(disease, 'Consult agricultural expert')
+@app.route('/api/chat/<access_token>', methods=['POST'])
+def chat_conversation(access_token):
+    try:
+        data = request.json
+        
+        # Adjust request body as per API docs
+        request_body = {
+            "messages": [{
+                "role": "user",
+                "content": data.get("question")
+            }]
+        }
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+        response = requests.post(
+            f'{BASE_URL}/identification/{access_token}/conversation',
+            headers={'Api-Key': API_KEY},
+            json=request_body  # Send properly formatted body
+        )
+
+        response.raise_for_status()
+        return jsonify(response.json())
+
+    except requests.exceptions.RequestException as e:
+        return jsonify(error='Chat failed'), 502
