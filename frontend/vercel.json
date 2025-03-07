@@ -4,12 +4,4 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "build": {
-    "env": {
-      "GENERATE_SOURCEMAP": "false"
-    }
-  },
-  "ignoreCommand": "echo 'Skipping source maps and unnecessary files'",
-  "cleanUrls": true
-}
+  ]
