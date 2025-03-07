@@ -7,8 +7,8 @@ import Marketplace from "../components/Marketplace";
 import GovtSchemes from "../components/GovtSchemes";
 import AnalysePlant from "../components/AnalysePlant";
 import PestPurchase from "../components/PestPurchase";
-import Contacts from "../components/contacts";
-import Sos from "../components/SOS";
+import Contacts from "../components/Contacts"
+import Sos from "../components/SOS"
 function App() {
   const updatePage = (text) => {
     setPage(text);
