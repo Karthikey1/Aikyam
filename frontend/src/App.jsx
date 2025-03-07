@@ -7,7 +7,8 @@ import Marketplace from "../components/Marketplace";
 import GovtSchemes from "../components/GovtSchemes";
 import AnalysePlant from "../components/AnalysePlant";
 import PestPurchase from "../components/PestPurchase";
-import Contacts from "../components/Contacts";
+import Contacts from "../components/contacts";
+import Sos from "../components/SOS";
 function App() {
   const updatePage = (text) => {
     setPage(text);
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <PersistentDrawerRight changePage={updatePage} />
+      <Sos className="sos-button" />
       <div className="pages">
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -26,10 +28,13 @@ function App() {
           <Route path="/analyseplant" element={<AnalysePlant />} />
           <Route path="/pestpurchase" element={<PestPurchase />} />
           <Route path="/contacts" element={<Contacts />} />
+          
 
           {/* Fallback Route */}
           <Route path="*" element={<Home />} />
+          
         </Routes>
+        
       </div>
     </>
   );
