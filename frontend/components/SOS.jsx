@@ -1,5 +1,5 @@
 import React from "react";
-import "./Sos.css";
+import "./SOS.css";
 
 function Sos() {
   const handleEmergency = () => {
