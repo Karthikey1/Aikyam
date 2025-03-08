@@ -1,5 +1,7 @@
 .pages {
   padding-top: 0px;
+  bottom: 0px;
+  width: 100vw;
   background-color: #f5f5dc;
   position: relative;
 }

@@ -1,7 +1,7 @@
 import "./Home.css";
 import { Container, Box, Typography, Grid, Card, CardContent } from "@mui/material";
 import { LocalFlorist, Cloud, Article, AttachMoney, Storefront, Newspaper } from "@mui/icons-material";
-
+import Sos from "./SOS"
 const features = [
   { title: "Your Crop Doctor", icon: <LocalFlorist fontSize="large" />, description: "Get AI-driven crop health analysis." },
   { title: "Weather Forecasts", icon: <Cloud fontSize="large" />, description: "Stay updated with real-time weather conditions." },
@@ -13,6 +13,7 @@ const features = [
 
 export default function Home() {
   return (
+    <><Sos className="sos-button" />
     <Box
       className="home"
       sx={{
@@ -62,6 +63,7 @@ export default function Home() {
           ))}
         </Grid>
       </Container>
-    </Box>
+      </Box>
+      </>
   );
 }
